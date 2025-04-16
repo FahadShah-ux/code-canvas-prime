@@ -16,10 +16,15 @@ export const TypeAnimation = ({
   const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
-    const typeSpeed = 150; // Typing speed
-    const deleteSpeed = 100; // Deleting speed
-    const waitAtEnd = 2000; // Wait at the end of typing
-    const waitAtStart = 1000; // Wait before deleting
+    // Calculate typing speed based on phrase length and desired animation duration (2 seconds)
+    const currentPhrase = phrases[currentPhraseIndex];
+    const typingDuration = 2000; // 2 seconds for typing
+    const deletingDuration = 2000; // 2 seconds for deleting
+    const displayDuration = 5000; // 5 seconds to display the full text
+    
+    // Calculate speeds based on phrase length to achieve desired durations
+    const typeSpeed = typingDuration / currentPhrase.length;
+    const deleteSpeed = deletingDuration / currentPhrase.length;
 
     const handleTyping = () => {
       const currentPhrase = phrases[currentPhraseIndex];
@@ -32,17 +37,17 @@ export const TypeAnimation = ({
         if (currentText.length === 0) {
           setIsDeleting(false);
           setCurrentPhraseIndex((currentPhraseIndex + 1) % phrases.length);
-          return waitAtStart; // Wait before typing next phrase
+          return 500; // Short pause before typing next phrase
         }
         return deleteSpeed; // Speed for deleting
       } else {
         // Typing state
         setCurrentText(currentPhrase.substring(0, currentText.length + 1));
 
-        // If fully typed, switch to deleting after a pause
+        // If fully typed, switch to deleting after the display duration
         if (currentText.length === currentPhrase.length) {
           setIsDeleting(true);
-          return waitAtEnd; // Wait at the end of typing
+          return displayDuration; // Wait for 5 seconds before starting to delete
         }
         return typeSpeed; // Speed for typing
       }
