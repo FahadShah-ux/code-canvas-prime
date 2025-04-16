@@ -52,7 +52,7 @@ export const TypeAnimation = ({
   }} transition={{
     duration: 0.5
   }}>
-      <span className="make this text all animation slower ">{currentText}</span>
+      
       <motion.span animate={{
       opacity: [1, 0, 1]
     }} transition={{
