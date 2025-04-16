@@ -1,3 +1,4 @@
+
 import { motion } from 'framer-motion';
 import { TypeAnimation } from './TypeAnimation';
 
@@ -31,11 +32,15 @@ const Hero = () => {
           <div className="h-12 md:h-16">
             <TypeAnimation
               phrases={[
-                "Full Stack Developer", 
-                "Backend Developer", 
-                "Frontend Developer"
+                "Frontend Engineer",
+                "Full-Stack Developer", 
+                "React Specialist", 
+                "Next.js Expert",
+                "TypeScript Architect",
+                "Cloud Native Dev",
+                "Serverless Engineer"
               ]}
-              className="text-xl md:text-2xl lg:text-3xl text-white/90"
+              className="text-xl md:text-2xl lg:text-3xl"
             />
           </div>
           <p className="text-lg text-white/80 my-6 max-w-xl">
