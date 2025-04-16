@@ -13,10 +13,10 @@ export const TypeAnimation = ({ phrases, className = '' }: TypeAnimationProps) =
   const [isDeleting, setIsDeleting] = useState(false);
   
   useEffect(() => {
-    const typeSpeed = 100; // Time per character when typing
-    const deleteSpeed = 50; // Time per character when deleting
-    const waitAtEnd = 1500; // Time to wait at the end of typing
-    const waitAtStart = 500; // Time to wait before deleting
+    const typeSpeed = 250; // Slower typing speed (increased from 100)
+    const deleteSpeed = 150; // Slower deleting speed (increased from 50)
+    const waitAtEnd = 2000; // Longer wait at the end of typing (increased from 1500)
+    const waitAtStart = 1000; // Longer wait before deleting (increased from 500)
     
     const handleTyping = () => {
       const currentPhrase = phrases[currentPhraseIndex];
