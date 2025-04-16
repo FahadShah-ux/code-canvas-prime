@@ -31,7 +31,15 @@ const Hero = () => {
           </h1>
           <div className="h-12 md:h-16">
             <TypeAnimation
-              phrases={["Frontend Engineer", "React Developer", "Backend Specialist", "Full-Stack Engineer"]}
+              phrases={[
+                "Frontend Engineer", 
+                "Full-Stack Developer", 
+                "React Specialist", 
+                "Next.js Expert", 
+                "TypeScript Architect", 
+                "Cloud Native Dev", 
+                "Serverless Engineer"
+              ]}
               className="text-xl md:text-2xl lg:text-3xl text-white/90"
             />
           </div>
