@@ -20,7 +20,7 @@ export const TypeAnimation = ({
     const currentPhrase = phrases[currentPhraseIndex];
     const typingDuration = 2000; // 2 seconds for typing
     const deletingDuration = 2000; // 2 seconds for deleting
-    const displayDuration = 5000; // 5 seconds to display the full text
+    const displayDuration = 10000; // 5 seconds to display the full text
     
     // Calculate speeds based on phrase length to achieve desired durations
     const typeSpeed = typingDuration / currentPhrase.length;
