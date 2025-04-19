@@ -18,9 +18,9 @@ export const TypeAnimation = ({
   useEffect(() => {
     // Calculate typing speed based on phrase length and desired animation duration (2 seconds)
     const currentPhrase = phrases[currentPhraseIndex];
-    const typingDuration = 2000; // 2 seconds for typing
-    const deletingDuration = 2000; // 2 seconds for deleting
-    const displayDuration = 10000; // 5 seconds to display the full text
+    const typingDuration = 5000; // 2 seconds for typing
+    const deletingDuration = 5000; // 2 seconds for deleting
+    const displayDuration = 50000; // 5 seconds to display the full text
     
     // Calculate speeds based on phrase length to achieve desired durations
     const typeSpeed = typingDuration / currentPhrase.length;
