@@ -1,4 +1,4 @@
-
+/*
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
@@ -56,6 +56,75 @@ export const TypeAnimation = ({
     const timeout = setTimeout(handleTyping, handleTyping());
     return () => clearTimeout(timeout);
   }, [currentPhraseIndex, currentText, isDeleting, phrases]);
+
+  return (
+    <motion.div 
+      className={`flex items-center ${className}`}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+    >
+      <span className="text-blue-500">{currentText}</span>
+      <motion.span 
+        animate={{ opacity: [1, 0, 1] }}
+        transition={{ repeat: Infinity, duration: 1 }}
+        className="ml-1 inline-block w-[3px] h-[1em] bg-primary" 
+      />
+    </motion.div>
+  );
+};
+*/
+
+import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+
+interface TypeAnimationProps {
+  phrases: string[];
+  className?: string;
+}
+
+export const TypeAnimation = ({
+  phrases,
+  className = '',
+}: TypeAnimationProps) => {
+  const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0);
+  const [currentText, setCurrentText] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  useEffect(() => {
+    const currentPhrase = phrases[currentPhraseIndex];
+
+    const typeSpeed = isDeleting ? 50 : 100; // typing slower than deleting
+    const fullPause = 2000; // pause when full text is shown
+    const emptyPause = 500; // pause when text is fully deleted
+
+    const updateText = () => {
+      if (isDeleting) {
+        setCurrentText((prev) => prev.slice(0, -1));
+        if (currentText === '') {
+          setIsDeleting(false);
+          setCurrentPhraseIndex((prev) => (prev + 1) % phrases.length);
+        }
+      } else {
+        setCurrentText((prev) => currentPhrase.slice(0, prev.length + 1));
+        if (currentText === currentPhrase) {
+          setIsDeleting(true);
+        }
+      }
+    };
+
+    let timeout: NodeJS.Timeout;
+
+    if (!isDeleting && currentText === currentPhrase) {
+      timeout = setTimeout(updateText, fullPause);
+    } else if (isDeleting && currentText === '') {
+      timeout = setTimeout(updateText, emptyPause);
+    } else {
+      timeout = setTimeout(updateText, typeSpeed);
+    }
+
+    return () => clearTimeout(timeout);
+  }, [currentText, isDeleting, currentPhraseIndex, phrases]);
 
   return (
     <motion.div 
